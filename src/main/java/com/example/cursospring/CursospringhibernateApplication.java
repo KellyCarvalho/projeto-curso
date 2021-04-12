@@ -37,8 +37,6 @@ public class CursospringhibernateApplication implements CommandLineRunner {
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
-		/*cat1.getProdutos().addAll(Arrays.asList(p2));
-		p2.getCategorias().addAll(Arrays.asList(cat1));*/
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
