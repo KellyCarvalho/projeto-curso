@@ -4,11 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Categoria implements Serializable {
 
@@ -17,7 +24,11 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	@ManyToMany(mappedBy = "categorias")
+	/*
+	@ManyToMany(mappedBy = "categorias")*/
+	@ManyToMany(mappedBy = "categorias", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	@JsonManagedReference
 	private List<Produtos> produtos= new ArrayList<>();
 	
 	public Categoria() {

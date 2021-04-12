@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 @Entity
@@ -22,9 +26,12 @@ public class Produtos implements Serializable {
 	private Integer id;
 	private String nome;
 	private Double preco;
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name ="Produto_Categoria", joinColumns = @JoinColumn(name="Produto_id"),
-	inverseJoinColumns = @JoinColumn(name="categoria_id"))
+	inverseJoinColumns = @JoinColumn(name="categoria_id"))*/
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="produto_categoria")
+	@JsonBackReference
 	private List<Categoria> categorias= new ArrayList<>();
 
 	
