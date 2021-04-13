@@ -9,8 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.cursospring.domain.Categoria;
+import com.example.cursospring.domain.Cidade;
+import com.example.cursospring.domain.Estado;
 import com.example.cursospring.domain.Produtos;
 import com.example.cursospring.repositories.CategoriaRepository;
+import com.example.cursospring.repositories.CidadeRepository;
+import com.example.cursospring.repositories.EstadoRepository;
 import com.example.cursospring.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -19,6 +23,10 @@ public class CursospringhibernateApplication implements CommandLineRunner {
 	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursospringhibernateApplication.class, args);
@@ -39,6 +47,13 @@ public class CursospringhibernateApplication implements CommandLineRunner {
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		Estado bahia = new Estado(null,"Bahia");
+		Cidade cidade = new Cidade(null,"Camaçari",bahia);
+		bahia.getCidades().addAll(Arrays.asList(cidade));
+		
+		cidadeRepository.saveAll(Arrays.asList(cidade));
+		estadoRepository.saveAll(Arrays.asList(bahia));
+		
 		
 		
 	}
