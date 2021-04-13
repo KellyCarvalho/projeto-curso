@@ -39,6 +39,8 @@ private static final long serialVersionUID = 1L;
 	@ElementCollection
 	@CollectionTable(name="telefones")
 	private Set<String> telefones = new HashSet<>();
+	
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
 
@@ -132,6 +134,14 @@ private static final long serialVersionUID = 1L;
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 }
