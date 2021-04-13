@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Cidade implements Serializable {
 
@@ -21,9 +22,9 @@ private static final long serialVersionUID = 1L;
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
 private String nome;
+@JsonManagedReference
 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 @JoinColumn(name="estado_id")
-@JsonBackReference
 private Estado estado;
 
 public Cidade(Integer id, String nome, Estado estado) {

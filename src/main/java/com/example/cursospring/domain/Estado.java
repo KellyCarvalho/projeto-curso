@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Estado implements Serializable{
@@ -25,7 +26,7 @@ public class Estado implements Serializable{
 	private String nome;
 	@ManyToMany(mappedBy = "estado", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Column(nullable = true)
-	@JsonManagedReference
+	@JsonBackReference
 	private List<Cidade> cidades = new ArrayList<>();
 	public Estado() {
 		super();
