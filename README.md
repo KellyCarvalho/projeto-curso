@@ -7,4 +7,5 @@ http://localhost:8081/clientes/id
 http://localhost:8081/categorias/id
 
 http://localhost:8081/pedidos/id
+
 (o Spring deve estar sendo executado para os endpoints funcionarem)
