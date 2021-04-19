@@ -15,10 +15,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.example.cursospring.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Cliente implements Serializable {
@@ -39,7 +41,8 @@ private static final long serialVersionUID = 1L;
 	@ElementCollection
 	@CollectionTable(name="telefones")
 	private Set<String> telefones = new HashSet<>();
-	
+	@OneToMany(mappedBy = "cliente")
+	@JsonBackReference
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {

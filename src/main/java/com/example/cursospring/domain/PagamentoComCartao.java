@@ -2,8 +2,10 @@ package com.example.cursospring.domain;
 
 import java.io.Serializable;
 
-import com.example.cursospring.domain.enums.EstadoPagamento;
+import javax.persistence.Entity;
 
+import com.example.cursospring.domain.enums.EstadoPagamento;
+@Entity
 public class PagamentoComCartao extends Pagamento implements Serializable {
 	
 

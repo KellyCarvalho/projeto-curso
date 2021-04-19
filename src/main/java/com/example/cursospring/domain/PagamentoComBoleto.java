@@ -3,11 +3,17 @@ package com.example.cursospring.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.example.cursospring.domain.enums.EstadoPagamento;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import com.example.cursospring.domain.enums.EstadoPagamento;
+@Entity
 public class PagamentoComBoleto extends Pagamento implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
 	private Date dataVencimento;
 	private Date dataPagamento;
 	public PagamentoComBoleto() {

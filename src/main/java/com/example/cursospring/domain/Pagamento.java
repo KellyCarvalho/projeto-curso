@@ -2,12 +2,31 @@ package com.example.cursospring.domain;
 
 import java.io.Serializable;
 
-import com.example.cursospring.domain.enums.EstadoPagamento;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
-public class Pagamento implements Serializable {
+import com.example.cursospring.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
 	private Integer id;
 	private EstadoPagamento estado;
+	@OneToOne
+	@JoinColumn(name="pedido_id")
+	@MapsId
+	@JsonBackReference
 	private Pedido pedido;
 	Pagamento(){
 		
